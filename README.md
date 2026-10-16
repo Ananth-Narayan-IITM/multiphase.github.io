@@ -28,6 +28,22 @@ To build the static site into `public/`:
 hugo --gc --minify
 ```
 
+## Deployment
+
+The site deploys automatically to GitHub Pages with the workflow in
+`.github/workflows/deploy.yml` on every push to `master`.
+
+- **Live site:** <https://ananth-narayan-iitm.github.io/multiphase.github.io/>
+- The workflow enables Pages, builds with Hugo and publishes via the official
+  GitHub Pages actions. The base URL is injected automatically, so no manual
+  configuration is needed.
+
+Because the repository is named `multiphase.github.io` but its owner is
+`Ananth-Narayan-IITM`, GitHub serves it as a **project site** under
+`/<repo>/`. To serve it at the root `https://multiphase.github.io/`, move the
+repository into a GitHub organisation named `multiphase`, or add a custom domain
+via a `static/CNAME` file.
+
 ## Where everything lives
 
 ```
