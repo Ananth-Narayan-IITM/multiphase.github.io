@@ -1,0 +1,42 @@
+<footer class="site-footer">
+  <div class="container footer">
+    <div class="footer__top">
+      <div class="footer__brand">
+        <a class="brand" href="{{ "" | relURL }}">
+          <span class="brand__mark" aria-hidden="true">{{ site.Params.initials }}</span>
+          <span class="brand__text">
+            <span class="brand__name">{{ site.Params.brand }}</span>
+            <span class="brand__role">{{ site.Params.role }}</span>
+          </span>
+        </a>
+        <p class="footer__note">{{ site.Params.footerNote }}</p>
+        <p class="footer__loc">{{ partial "icon.html" "location" }} {{ site.Params.location }}</p>
+      </div>
+
+      <div class="footer__cols">
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <ul>
+            {{ range site.Menus.main }}<li><a href="{{ .URL }}">{{ .Name }}</a></li>{{ end }}
+            <li><a href="{{ site.Params.cv | relURL }}">CV</a></li>
+          </ul>
+        </div>
+        <div class="footer__col">
+          <h4>Connect</h4>
+          <ul>
+            {{ with site.Params.social.email }}<li><a href="{{ . }}">{{ partial "icon.html" "mail" }} Email</a></li>{{ end }}
+            {{ with site.Params.social.github }}<li><a href="{{ . }}">{{ partial "icon.html" "github" }} GitHub</a></li>{{ end }}
+            {{ with site.Params.social.linkedin }}<li><a href="{{ . }}">{{ partial "icon.html" "linkedin" }} LinkedIn</a></li>{{ end }}
+            {{ with site.Params.social.scholar }}<li><a href="{{ . }}">{{ partial "icon.html" "scholar" }} Scholar</a></li>{{ end }}
+            {{ with site.Params.social.orcid }}<li><a href="{{ . }}">{{ partial "icon.html" "orcid" }} ORCID</a></li>{{ end }}
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>&copy; {{ now.Year }} {{ site.Params.author }}. All rights reserved.</p>
+      <p>Built with <a href="https://gohugo.io" target="_blank" rel="noopener">Hugo</a>.</p>
+    </div>
+  </div>
+</footer>

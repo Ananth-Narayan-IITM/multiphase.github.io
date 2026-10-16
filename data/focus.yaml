@@ -1,0 +1,31 @@
+# Research focus areas shown on the homepage.
+# Edit titles, descriptions, tags and icons here. Available icons: fluid, bolt,
+# topology, bubble, code, chart, cpu, thermometer, wave, layers, spark.
+- title: "CFP"
+  subtitle: "Computational Fluid Physics"
+  icon: "fluid"
+  url: "/projects/cfp-solver/"
+  accent: "cyan"
+  description: "High-fidelity and reduced-order solvers for incompressible and low-Mach flows - from direct numerical simulation of turbulence to production-scale conjugate heat transfer."
+  tags: ["Navier-Stokes", "LES / DNS", "OpenFOAM", "FEniCSx"]
+- title: "Electric Field"
+  subtitle: "Electrohydrodynamics"
+  icon: "bolt"
+  url: "/projects/electrohydrodynamic-heat-transfer/"
+  accent: "violet"
+  description: "Coupled charge-transport and Navier-Stokes modelling of electrohydrodynamic (EHD) flows that thin thermal boundary layers and augment single-phase cooling."
+  tags: ["EHD", "Corona discharge", "Ionic wind", "Poisson-Boltzmann"]
+- title: "Topology Optimization"
+  subtitle: "Optimal thermal design"
+  icon: "topology"
+  url: "/projects/topology-optimization-heat-sinks/"
+  accent: "emerald"
+  description: "Adjoint-based topology optimisation of microchannel and cold-plate geometries that minimise thermal resistance under manufacturability constraints."
+  tags: ["SIMP", "Level-set", "Adjoint", "Additive manufacturing"]
+- title: "Taylor Bubble"
+  subtitle: "Multiphase heat transfer"
+  icon: "bubble"
+  url: "/projects/taylor-bubble-semiconductor-cooling/"
+  accent: "amber"
+  description: "Interface-resolved simulation of confined Taylor-bubble trains, connecting bubble dynamics to wall heat transfer in semiconductor cold plates."
+  tags: ["VOF / Level-set", "Two-phase", "Boiling", "Conjugate heat transfer"]

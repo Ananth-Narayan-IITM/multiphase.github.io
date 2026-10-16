@@ -1,0 +1,22 @@
+<section class="section" id="toolbox">
+  <div class="container">
+    <header class="section__head reveal">
+      <p class="eyebrow">Toolbox</p>
+      <h2 class="section__title">Methods, solvers and software I work with</h2>
+    </header>
+
+    <div class="skills-grid">
+      {{ range hugo.Data.skills }}
+      <div class="skill-card reveal">
+        <div class="skill-card__head">
+          <span class="skill-card__icon">{{ partial "icon.html" .icon }}</span>
+          <h3 class="skill-card__title">{{ .group }}</h3>
+        </div>
+        <ul class="skill-card__items">
+          {{ range .items }}<li>{{ partial "icon.html" "check" }}{{ . }}</li>{{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

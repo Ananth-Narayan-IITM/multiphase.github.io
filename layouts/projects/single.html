@@ -1,0 +1,83 @@
+{{ define "main" }}
+<article class="article">
+  <header class="article__head">
+    <div class="page-head__aura" aria-hidden="true"></div>
+    <div class="container">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="{{ "" | relURL }}">Home</a></li>
+          <li><a href="{{ "projects/" | relURL }}">Projects</a></li>
+          <li aria-current="page">{{ .Title }}</li>
+        </ol>
+      </nav>
+      <p class="eyebrow reveal">{{ .Params.category | default "Project" }}</p>
+      <h1 class="article__title reveal">{{ .Title }}</h1>
+      <p class="article__lead reveal">{{ .Params.summary }}</p>
+
+      <ul class="article__meta reveal">
+        <li>{{ partial "icon.html" "calendar" }} {{ .Date.Format "January 2006" }}</li>
+        {{ with .Params.role }}<li>{{ partial "icon.html" "target" }} {{ . }}</li>{{ end }}
+        <li>{{ partial "icon.html" "clock" }} {{ .ReadingTime }} min read</li>
+        {{ with .Params.status }}<li class="status status--{{ $.Params.statusTone | default "active" }}"><span class="status__dot"></span>{{ . }}</li>{{ end }}
+      </ul>
+
+      {{ with .Params.tags }}
+      <ul class="chip-row reveal">
+        {{ range . }}<li>{{ partial "icon.html" "tag" }}{{ . }}</li>{{ end }}
+      </ul>
+      {{ end }}
+    </div>
+
+    {{ with .Params.cover }}
+    <div class="container">
+      <figure class="article__cover reveal">
+        <img src="{{ . | relURL }}" alt="{{ $.Title }} cover image" width="1200" height="675">
+      </figure>
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="container article__layout">
+    <aside class="article__aside">
+      {{ with .Params.metrics }}
+      <div class="panel reveal">
+        <h2 class="panel__title">Key results</h2>
+        <dl class="metric-list">
+          {{ range . }}
+          <div class="metric"><dt>{{ .value }}</dt><dd>{{ .label }}</dd></div>
+          {{ end }}
+        </dl>
+      </div>
+      {{ end }}
+
+      {{ with .Params.tools }}
+      <div class="panel reveal">
+        <h2 class="panel__title">Tools &amp; methods</h2>
+        <ul class="pill-list">{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      </div>
+      {{ end }}
+
+      {{ if .Params.toc | default true }}
+      {{ with .TableOfContents }}
+      <nav class="panel toc reveal" aria-label="On this page">
+        <h2 class="panel__title">On this page</h2>
+        {{ . }}
+      </nav>
+      {{ end }}
+      {{ end }}
+
+      <a class="panel panel--link reveal" href="{{ "projects/" | relURL }}">
+        {{ partial "icon.html" "arrow-right" }}
+        <span>Back to all projects</span>
+      </a>
+    </aside>
+
+    <div class="article__body prose">
+      {{ .Content }}
+      {{ partial "article-footer.html" . }}
+    </div>
+  </div>
+
+  {{ partial "article-nav.html" . }}
+</article>
+{{ end }}

@@ -1,0 +1,19 @@
+{{- /*
+  Placeholder-aware video embed.
+  Usage: {{< video src="/videos/taylor-bubble.mp4" poster="/videos/taylor-bubble.jpg" caption="Rising bubble train" span="full" >}}
+  The poster and file are dummy assets - drop your own export in /static/videos and update the paths.
+*/ -}}
+{{- $src := strings.TrimPrefix "/" (.Get "src") -}}
+{{- $poster := strings.TrimPrefix "/" (.Get "poster") -}}
+{{- $caption := .Get "caption" -}}
+{{- $span := .Get "span" | default "full" -}}
+<figure class="media media--video media--{{ $span }}">
+  <div class="media__frame media__frame--video">
+    <video class="media__video" controls muted loop playsinline preload="metadata" poster="{{ $poster | relURL }}">
+      <source src="{{ $src | relURL }}" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <span class="media__badge">{{ partial "icon.html" "film" }} Dummy video</span>
+  </div>
+  {{ with $caption }}<figcaption class="media__caption">{{ . }}</figcaption>{{ end }}
+</figure>

@@ -1,0 +1,10 @@
+{{- /* Usage: {{< callout type="note" title="Tip" >}} markdown {{< /callout >}} */ -}}
+{{- $type := .Get "type" | default "note" -}}
+{{- $icons := dict "note" "info" "tip" "bulb" "warning" "alert" "result" "target" "method" "sliders" -}}
+<aside class="callout callout--{{ $type }}">
+  <div class="callout__icon">{{ partial "icon.html" (index $icons $type | default "info") }}</div>
+  <div class="callout__body">
+    {{ with .Get "title" }}<p class="callout__title">{{ . }}</p>{{ end }}
+    <div class="callout__text">{{ .Inner | markdownify }}</div>
+  </div>
+</aside>

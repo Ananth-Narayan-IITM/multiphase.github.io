@@ -1,0 +1,22 @@
+<section class="section section--cta" id="contact">
+  <div class="container">
+    <div class="cta reveal">
+      <div class="cta__glow" aria-hidden="true"></div>
+      <div class="cta__body">
+        <p class="eyebrow">Let's work together</p>
+        <h2 class="cta__title">Interested in a simulation, a collaboration or a role?</h2>
+        <p class="cta__text">I am always happy to talk about multiphase flow, thermal management and computational methods — or about joining a team that ships hardware and software for semiconductor manufacturing.</p>
+        <div class="cta__actions">
+          <a class="btn btn--primary" href="{{ site.Params.social.email }}">{{ partial "icon.html" "mail" }} {{ site.Params.email }}</a>
+          <a class="btn btn--ghost" href="{{ site.Params.cv | relURL }}">{{ partial "icon.html" "download" }} Download CV</a>
+        </div>
+      </div>
+      <ul class="cta__socials">
+        {{ with site.Params.social.github }}<li><a href="{{ . }}" aria-label="GitHub">{{ partial "icon.html" "github" }}</a></li>{{ end }}
+        {{ with site.Params.social.linkedin }}<li><a href="{{ . }}" aria-label="LinkedIn">{{ partial "icon.html" "linkedin" }}</a></li>{{ end }}
+        {{ with site.Params.social.scholar }}<li><a href="{{ . }}" aria-label="Google Scholar">{{ partial "icon.html" "scholar" }}</a></li>{{ end }}
+        {{ with site.Params.social.orcid }}<li><a href="{{ . }}" aria-label="ORCID">{{ partial "icon.html" "orcid" }}</a></li>{{ end }}
+      </ul>
+    </div>
+  </div>
+</section>

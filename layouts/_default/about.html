@@ -1,0 +1,100 @@
+{{ define "main" }}
+  {{ partial "page-head.html" (dict
+    "eyebrow" (.Params.eyebrow | default "About me")
+    "title" (.Title | default "About me")
+    "lead" .Params.lead
+    "crumbs" (slice (dict "label" "Home" "url" "/"))
+  ) }}
+
+  <section class="section">
+    <div class="container about">
+      <div class="about__portrait reveal">
+        <figure class="about__frame">
+          <img src="{{ site.Params.avatar | relURL }}" alt="Portrait of {{ site.Params.author }}" width="720" height="720">
+        </figure>
+        <ul class="about__facts">
+          <li>{{ partial "icon.html" "location" }}<span>{{ site.Params.location }}</span></li>
+          <li>{{ partial "icon.html" "book" }}<span>{{ site.Params.affiliation }}</span></li>
+          <li>{{ partial "icon.html" "mail" }}<span><a href="{{ site.Params.social.email }}">{{ site.Params.email }}</a></span></li>
+        </ul>
+        <ul class="about__socials">
+          {{ with site.Params.social.github }}<li><a href="{{ . }}" aria-label="GitHub">{{ partial "icon.html" "github" }}</a></li>{{ end }}
+          {{ with site.Params.social.linkedin }}<li><a href="{{ . }}" aria-label="LinkedIn">{{ partial "icon.html" "linkedin" }}</a></li>{{ end }}
+          {{ with site.Params.social.scholar }}<li><a href="{{ . }}" aria-label="Google Scholar">{{ partial "icon.html" "scholar" }}</a></li>{{ end }}
+          {{ with site.Params.social.orcid }}<li><a href="{{ . }}" aria-label="ORCID">{{ partial "icon.html" "orcid" }}</a></li>{{ end }}
+        </ul>
+        <a class="btn btn--primary btn--block" href="{{ site.Params.cv | relURL }}">{{ partial "icon.html" "download" }} Download CV</a>
+      </div>
+
+      <div class="about__bio prose reveal">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Journey</p>
+        <h2 class="section__title">Education &amp; experience</h2>
+      </header>
+      <ol class="timeline">
+        {{ range hugo.Data.timeline }}
+        <li class="timeline__item reveal">
+          <span class="timeline__period">{{ .period }}</span>
+          <div class="timeline__card">
+            <h3 class="timeline__role">{{ .role }}</h3>
+            <p class="timeline__org">{{ .org }}</p>
+            <p class="timeline__desc">{{ .description }}</p>
+          </div>
+        </li>
+        {{ end }}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Research focus</p>
+        <h2 class="section__title">What I work on</h2>
+      </header>
+      <div class="focus-grid focus-grid--compact">
+        {{ range hugo.Data.focus }}
+        <a class="focus-card focus-card--{{ .accent }} reveal" href="{{ .url | relURL }}">
+          <span class="focus-card__icon">{{ partial "icon.html" .icon }}</span>
+          <div class="focus-card__head">
+            <h3 class="focus-card__title">{{ .title }}</h3>
+            <p class="focus-card__subtitle">{{ .subtitle }}</p>
+          </div>
+          <p class="focus-card__desc">{{ .description }}</p>
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--alt">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="eyebrow">Toolbox</p>
+        <h2 class="section__title">Methods, solvers and software</h2>
+      </header>
+      <div class="skills-grid">
+        {{ range hugo.Data.skills }}
+        <div class="skill-card reveal">
+          <div class="skill-card__head">
+            <span class="skill-card__icon">{{ partial "icon.html" .icon }}</span>
+            <h3 class="skill-card__title">{{ .group }}</h3>
+          </div>
+          <ul class="skill-card__items">
+            {{ range .items }}<li>{{ partial "icon.html" "check" }}{{ . }}</li>{{ end }}
+          </ul>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+
+  {{ partial "cta.html" . }}
+{{ end }}

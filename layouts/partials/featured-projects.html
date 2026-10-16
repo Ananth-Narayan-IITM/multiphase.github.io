@@ -1,0 +1,21 @@
+{{ $projects := where site.RegularPages "Section" "projects" }}
+{{ $featured := where $projects "Params.featured" true }}
+<section class="section" id="projects">
+  <div class="container">
+    <header class="section__head section__head--row reveal">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2 class="section__title">Featured projects</h2>
+      </div>
+      <a class="link-arrow" href="{{ "projects/" | relURL }}">All projects {{ partial "icon.html" "arrow-right" }}</a>
+    </header>
+
+    <div class="project-grid">
+      {{ range first 4 $featured }}
+        {{ partial "project-card.html" . }}
+      {{ else }}
+        {{ range first 4 $projects }}{{ partial "project-card.html" . }}{{ end }}
+      {{ end }}
+    </div>
+  </div>
+</section>

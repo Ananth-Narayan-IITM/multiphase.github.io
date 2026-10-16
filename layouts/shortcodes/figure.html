@@ -1,0 +1,17 @@
+{{- /*
+  Placeholder-aware figure.
+  Usage:  {{< figure src="/img/gallery/velocity-contour.jpg" caption="Velocity field" span="half" >}}
+  Swap the src for your own export at any time; the frame styling stays the same.
+*/ -}}
+{{- $src := strings.TrimPrefix "/" (.Get "src") -}}
+{{- $caption := .Get "caption" -}}
+{{- $alt := .Get "alt" | default $caption | default "Simulation figure" -}}
+{{- $span := .Get "span" | default "full" -}}
+<figure class="media media--{{ $span }}">
+  <button class="media__frame" type="button" data-lightbox-src="{{ $src | relURL }}" data-lightbox-caption="{{ $caption }}">
+    <img src="{{ $src | relURL }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+    <span class="media__badge">{{ partial "icon.html" "grid" }} Dummy frame</span>
+    <span class="media__zoom">{{ partial "icon.html" "external" }} View</span>
+  </button>
+  {{ with $caption }}<figcaption class="media__caption">{{ . }}</figcaption>{{ end }}
+</figure>

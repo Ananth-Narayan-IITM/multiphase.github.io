@@ -1,0 +1,29 @@
+{{ define "main" }}
+  {{ $pages := .Pages.ByWeight }}
+  {{ $tags := slice }}
+  {{ range $pages }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
+  {{ $tags = uniq $tags | sort }}
+
+  {{ partial "page-head.html" (dict
+    "eyebrow" "Portfolio"
+    "title" (.Title | default "Projects")
+    "lead" (.Params.lead | default "Simulation studies, solver development and design work across computational fluid physics, electrohydrodynamics, topology optimisation and multiphase heat transfer.")
+    "crumbs" (slice (dict "label" "Home" "url" "/"))
+  ) }}
+
+  <section class="section">
+    <div class="container">
+      {{ with $tags }}
+      <div class="filter reveal" role="group" aria-label="Filter projects by tag">
+        <button class="filter__btn is-active" data-filter="all" type="button">All</button>
+        {{ range . }}<button class="filter__btn" data-filter="{{ . }}" type="button">{{ . }}</button>{{ end }}
+      </div>
+      {{ end }}
+
+      <div class="project-grid" id="project-grid">
+        {{ range $pages }}{{ partial "project-card.html" . }}{{ end }}
+      </div>
+      <p class="filter__empty" id="filter-empty" hidden>No projects match that tag yet.</p>
+    </div>
+  </section>
+{{ end }}

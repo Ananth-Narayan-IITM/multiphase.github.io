@@ -1,0 +1,29 @@
+{{ define "main" }}
+  {{ $notes := .Pages.ByDate.Reverse }}
+  {{ $tags := slice }}
+  {{ range $notes }}{{ range .Params.tags }}{{ $tags = $tags | append . }}{{ end }}{{ end }}
+  {{ $tags = uniq $tags | sort }}
+
+  {{ partial "page-head.html" (dict
+    "eyebrow" "Notebook"
+    "title" (.Title | default "Notes")
+    "lead" (.Params.lead | default "Working notes on numerical methods, verification, and the physics behind multiphase and electrohydrodynamic heat transfer.")
+    "crumbs" (slice (dict "label" "Home" "url" "/"))
+  ) }}
+
+  <section class="section">
+    <div class="container">
+      {{ with $tags }}
+      <div class="filter reveal" role="group" aria-label="Filter notes by tag">
+        <button class="filter__btn is-active" data-filter="all" type="button">All</button>
+        {{ range . }}<button class="filter__btn" data-filter="{{ . }}" type="button">{{ . }}</button>{{ end }}
+      </div>
+      {{ end }}
+
+      <div class="note-list" id="note-list">
+        {{ range $notes }}{{ partial "note-card.html" . }}{{ end }}
+      </div>
+      <p class="filter__empty" id="filter-empty" hidden>No notes match that tag yet.</p>
+    </div>
+  </section>
+{{ end }}

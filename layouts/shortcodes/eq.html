@@ -1,0 +1,5 @@
+{{- /* Display equation, numbered. Usage: {{< eq label="1" >}} \nabla\cdot\mathbf{u}=0 {{< /eq >}} */ -}}
+<div class="equation">
+  <span class="equation__body">{{ .Inner }}</span>
+  {{ with .Get "label" }}<span class="equation__label">({{ . }})</span>{{ end }}
+</div>

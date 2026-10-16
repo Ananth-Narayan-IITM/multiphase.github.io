@@ -1,0 +1,47 @@
+{{ $hero := .Params.hero }}
+<section class="hero">
+  <canvas class="hero__canvas" id="flow-canvas" aria-hidden="true"></canvas>
+  <div class="hero__aura" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__content">
+      <p class="eyebrow reveal">{{ $hero.eyebrow }}</p>
+      <h1 class="hero__title reveal">{{ $hero.title }} <span class="grad-text">{{ $hero.highlight }}</span></h1>
+      <p class="hero__text reveal">{{ $hero.text }}</p>
+
+      <div class="hero__actions reveal">
+        <a class="btn btn--primary" href="{{ $hero.primary.url | relURL }}">{{ $hero.primary.label }} {{ partial "icon.html" "arrow-right" }}</a>
+        <a class="btn btn--ghost" href="{{ $hero.secondary.url | relURL }}">{{ partial "icon.html" "download" }} {{ $hero.secondary.label }}</a>
+      </div>
+
+      <ul class="hero__chips reveal">
+        {{ range $hero.chips }}<li>{{ partial "icon.html" .icon }}<span>{{ .label }}</span></li>{{ end }}
+      </ul>
+    </div>
+
+    <div class="hero__visual reveal">
+      <figure class="hero__frame">
+        <img src="{{ "img/gallery/multiphase-3d.jpg" | relURL }}" alt="Placeholder simulation frame" width="1600" height="900">
+        <figcaption><span class="pulse-dot"></span> Taylor-bubble train · placeholder frame</figcaption>
+      </figure>
+      <div class="hero__float hero__float--a" aria-hidden="true">
+        <span class="hero__float-value">{{ $hero.stat_a.value }}</span>
+        <span class="hero__float-label">{{ $hero.stat_a.label }}</span>
+      </div>
+      <div class="hero__float hero__float--b" aria-hidden="true">
+        <span class="hero__float-value">{{ $hero.stat_b.value }}</span>
+        <span class="hero__float-label">{{ $hero.stat_b.label }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <dl class="stats reveal">
+      {{ range $hero.stats }}
+      <div class="stat">
+        <dt class="stat__value">{{ .value }}</dt>
+        <dd class="stat__label">{{ .label }}</dd>
+      </div>
+      {{ end }}
+    </dl>
+  </div>
+</section>

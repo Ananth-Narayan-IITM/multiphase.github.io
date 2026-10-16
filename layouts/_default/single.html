@@ -1,0 +1,31 @@
+{{ define "main" }}
+<article class="article">
+  <header class="article__head">
+    <div class="page-head__aura" aria-hidden="true"></div>
+    <div class="container article__head-narrow">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="{{ "" | relURL }}">Home</a></li>
+          <li aria-current="page">{{ .Title }}</li>
+        </ol>
+      </nav>
+      <h1 class="article__title reveal">{{ .Title }}</h1>
+      {{ with .Params.summary }}<p class="article__lead reveal">{{ . }}</p>{{ end }}
+    </div>
+  </header>
+  <div class="container article__layout">
+    <aside class="article__aside">
+      {{ with .TableOfContents }}
+      <nav class="panel toc reveal" aria-label="On this page">
+        <h2 class="panel__title">On this page</h2>
+        {{ . }}
+      </nav>
+      {{ end }}
+    </aside>
+    <div class="article__body prose">
+      {{ .Content }}
+      {{ partial "article-footer.html" . }}
+    </div>
+  </div>
+</article>
+{{ end }}

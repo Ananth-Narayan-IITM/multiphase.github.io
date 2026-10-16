@@ -1,0 +1,18 @@
+{{ $prev := .PrevInSection }}
+{{ $next := .NextInSection }}
+{{ if or $prev $next }}
+<nav class="container article-nav" aria-label="More content">
+  {{ with $prev }}
+  <a class="article-nav__item article-nav__item--prev reveal" href="{{ .RelPermalink }}">
+    <span class="article-nav__dir">{{ partial "icon.html" "arrow-right" }} Previous</span>
+    <span class="article-nav__title">{{ .Title }}</span>
+  </a>
+  {{ end }}
+  {{ with $next }}
+  <a class="article-nav__item article-nav__item--next reveal" href="{{ .RelPermalink }}">
+    <span class="article-nav__dir">Next {{ partial "icon.html" "arrow-right" }}</span>
+    <span class="article-nav__title">{{ .Title }}</span>
+  </a>
+  {{ end }}
+</nav>
+{{ end }}

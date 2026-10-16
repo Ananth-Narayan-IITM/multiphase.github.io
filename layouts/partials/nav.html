@@ -1,0 +1,30 @@
+<header class="site-header" id="site-header">
+  <div class="container nav">
+    <a class="brand" href="{{ "" | relURL }}" aria-label="{{ site.Params.brand }} — home">
+      <span class="brand__mark" aria-hidden="true">{{ site.Params.initials }}</span>
+      <span class="brand__text">
+        <span class="brand__name">{{ site.Params.brand }}</span>
+        <span class="brand__role">{{ site.Params.role }}</span>
+      </span>
+    </a>
+
+    <nav class="nav__links" id="nav-links" aria-label="Primary navigation">
+      {{ range site.Menus.main }}
+        {{ $active := or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+        <a class="nav__link{{ if $active }} is-active{{ end }}" href="{{ .URL }}">{{ .Name }}</a>
+      {{ end }}
+      <a class="nav__link nav__link--cta" href="{{ site.Params.cv | relURL }}">{{ partial "icon.html" "download" }} CV</a>
+    </nav>
+
+    <div class="nav__actions">
+      <button class="icon-btn theme-toggle" id="theme-toggle" type="button" aria-label="Toggle colour theme">
+        <span class="theme-toggle__icon theme-toggle__icon--sun">{{ partial "icon.html" "sun" }}</span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon">{{ partial "icon.html" "moon" }}</span>
+      </button>
+      <button class="icon-btn nav__burger" id="nav-burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links">
+        <span class="nav__burger-open">{{ partial "icon.html" "menu" }}</span>
+        <span class="nav__burger-close">{{ partial "icon.html" "close" }}</span>
+      </button>
+    </div>
+  </div>
+</header>

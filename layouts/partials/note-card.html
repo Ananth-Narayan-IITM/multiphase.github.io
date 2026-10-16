@@ -1,0 +1,15 @@
+{{ $n := . }}
+<article class="note-card reveal"{{ with $n.Params.tags }} data-tags="{{ delimit . "," }}"{{ end }}>
+  <div class="note-card__meta">
+    <span>{{ partial "icon.html" "calendar" }} {{ $n.Date.Format "2 Jan 2006" }}</span>
+    <span>{{ partial "icon.html" "clock" }} {{ $n.ReadingTime }} min read</span>
+  </div>
+  <h3 class="note-card__title"><a href="{{ $n.RelPermalink }}">{{ $n.Title }}</a></h3>
+  <p class="note-card__summary">{{ $n.Params.summary | default $n.Summary }}</p>
+  <div class="note-card__foot">
+    {{ with $n.Params.tags }}
+    <ul class="note-card__tags">{{ range first 3 . }}<li>{{ . }}</li>{{ end }}</ul>
+    {{ end }}
+    <a class="note-card__more" href="{{ $n.RelPermalink }}">Read {{ partial "icon.html" "arrow-right" }}</a>
+  </div>
+</article>

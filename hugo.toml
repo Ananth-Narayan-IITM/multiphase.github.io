@@ -1,0 +1,64 @@
+baseURL = "http://localhost:1313/"
+locale = "en-us"
+title = "Dr. Alex Morgan"
+enableRobotsTXT = true
+enableEmoji = true
+summaryLength = 36
+
+[pagination]
+  pagerSize = 6
+
+[params]
+  brand = "Alex Morgan"
+  initials = "AM"
+  author = "Dr. Alex Morgan"
+  role = "Computational Fluid Physics & Thermal Engineering"
+  description = "Portfolio of Dr. Alex Morgan - computational fluid physics researcher working on CFD, electrohydrodynamics, topology optimisation and multiphase Taylor-bubble flows for semiconductor thermal management."
+  tagline = "Simulating the physics that keeps electronics cool."
+  email = "alex.morgan@example.com"
+  location = "Delft, The Netherlands"
+  affiliation = "Laboratory for Multiphase Flows & Thermal Engineering"
+  cv = "files/cv.pdf"
+  avatar = "img/avatar.jpg"
+  ogImage = "img/og-default.jpg"
+  footerNote = "Built with Hugo. All figures shown are placeholder frames."
+  githubUser = "your-handle"
+
+  [params.social]
+    github = "https://github.com/your-handle"
+    linkedin = "https://www.linkedin.com/in/your-handle"
+    scholar = "https://scholar.google.com/citations?user=YOURID"
+    orcid = "https://orcid.org/0000-0000-0000-0000"
+    email = "mailto:alex.morgan@example.com"
+
+[menu]
+  [[menu.main]]
+    name = "Projects"
+    pageRef = "/projects"
+    weight = 10
+  [[menu.main]]
+    name = "Notes"
+    pageRef = "/notes"
+    weight = 20
+  [[menu.main]]
+    name = "About"
+    pageRef = "/about"
+    weight = 30
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.highlight]
+    style = "github-dark"
+    lineNos = false
+    noClasses = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[outputs]
+  home = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  category = "categories"

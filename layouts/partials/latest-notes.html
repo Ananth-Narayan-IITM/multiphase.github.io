@@ -1,0 +1,17 @@
+{{ $notes := where site.RegularPages "Section" "notes" }}
+<section class="section section--alt" id="notes">
+  <div class="container">
+    <header class="section__head section__head--row reveal">
+      <div>
+        <p class="eyebrow">Notebook</p>
+        <h2 class="section__title">Latest notes</h2>
+        <p class="section__lead">Short, practical write-ups on the numerical methods and physics behind the simulations.</p>
+      </div>
+      <a class="link-arrow" href="{{ "notes/" | relURL }}">All notes {{ partial "icon.html" "arrow-right" }}</a>
+    </header>
+
+    <div class="note-list">
+      {{ range first 3 $notes }}{{ partial "note-card.html" . }}{{ end }}
+    </div>
+  </div>
+</section>

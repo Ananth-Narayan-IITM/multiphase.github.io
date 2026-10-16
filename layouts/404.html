@@ -1,0 +1,14 @@
+{{ define "main" }}
+<section class="section error-page">
+  <div class="page-head__aura" aria-hidden="true"></div>
+  <div class="container error">
+    <p class="error__code">404</p>
+    <h1 class="error__title">This page drifted out of the domain</h1>
+    <p class="error__text">The page you were looking for has left the computational domain. Try one of the links below instead.</p>
+    <div class="error__actions">
+      <a class="btn btn--primary" href="{{ "" | relURL }}">Back home {{ partial "icon.html" "arrow-right" }}</a>
+      <a class="btn btn--ghost" href="{{ "projects/" | relURL }}">Browse projects</a>
+    </div>
+  </div>
+</section>
+{{ end }}

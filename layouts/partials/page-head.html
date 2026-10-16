@@ -1,0 +1,18 @@
+{{ $title := .title }}
+<header class="page-head">
+  <div class="page-head__aura" aria-hidden="true"></div>
+  <div class="container page-head__inner">
+    {{ with .crumbs }}
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        {{ range . }}<li><a href="{{ .url | relURL }}">{{ .label }}</a></li>{{ end }}
+        <li aria-current="page">{{ $title }}</li>
+      </ol>
+    </nav>
+    {{ end }}
+    {{ with .eyebrow }}<p class="eyebrow reveal">{{ . }}</p>{{ end }}
+    <h1 class="page-head__title reveal">{{ $title }}</h1>
+    {{ with .lead }}<p class="page-head__lead reveal">{{ . }}</p>{{ end }}
+    {{ with .extra }}<div class="page-head__extra reveal">{{ . | safeHTML }}</div>{{ end }}
+  </div>
+</header>

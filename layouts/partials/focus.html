@@ -1,0 +1,26 @@
+<section class="section section--focus" id="focus">
+  <div class="container">
+    <header class="section__head reveal">
+      <p class="eyebrow">Research focus</p>
+      <h2 class="section__title">Four threads, one goal: cooler, faster electronics</h2>
+      <p class="section__lead">My work connects continuum mechanics, electromagnetism and numerical optimisation to solve the thermal bottlenecks of modern semiconductor devices.</p>
+    </header>
+
+    <div class="focus-grid">
+      {{ range hugo.Data.focus }}
+      <a class="focus-card focus-card--{{ .accent }} reveal" href="{{ .url | relURL }}">
+        <span class="focus-card__icon">{{ partial "icon.html" .icon }}</span>
+        <div class="focus-card__head">
+          <h3 class="focus-card__title">{{ .title }}</h3>
+          <p class="focus-card__subtitle">{{ .subtitle }}</p>
+        </div>
+        <p class="focus-card__desc">{{ .description }}</p>
+        <ul class="focus-card__tags">
+          {{ range .tags }}<li>{{ . }}</li>{{ end }}
+        </ul>
+        <span class="focus-card__link">Explore {{ partial "icon.html" "arrow-right" }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </div>
+</section>

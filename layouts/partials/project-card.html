@@ -1,0 +1,25 @@
+{{ $p := . }}
+<article class="project-card reveal"{{ with $p.Params.tags }} data-tags="{{ delimit . "," }}"{{ end }}>
+  <a class="project-card__media" href="{{ $p.RelPermalink }}" aria-label="{{ $p.Title }}">
+    {{ with $p.Params.cover }}
+      <img src="{{ . | relURL }}" alt="{{ $p.Title }} cover image" loading="lazy" width="1200" height="675">
+    {{ else }}
+      <div class="media__placeholder">{{ partial "icon.html" "fluid" }}</div>
+    {{ end }}
+    <span class="project-card__badge">{{ $p.Params.category | default "Project" }}</span>
+    <span class="project-card__overlay">{{ partial "icon.html" "arrow-up-right" }}</span>
+  </a>
+  <div class="project-card__body">
+    <div class="project-card__meta">
+      <span>{{ partial "icon.html" "calendar" }} {{ $p.Date.Format "Jan 2006" }}</span>
+      {{ with $p.Params.status }}<span class="status status--{{ $p.Params.statusTone | default "active" }}"><span class="status__dot"></span>{{ . }}</span>{{ end }}
+    </div>
+    <h3 class="project-card__title"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a></h3>
+    <p class="project-card__summary">{{ $p.Params.summary | default $p.Summary }}</p>
+    {{ with $p.Params.tags }}
+    <ul class="project-card__tags">
+      {{ range first 3 . }}<li>{{ . }}</li>{{ end }}
+    </ul>
+    {{ end }}
+  </div>
+</article>

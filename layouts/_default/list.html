@@ -1,0 +1,18 @@
+{{ define "main" }}
+  {{ partial "page-head.html" (dict
+    "eyebrow" "Index"
+    "title" (.Title | default "Archive")
+    "lead" (.Params.lead | default (printf "All content filed under %s." .Title))
+    "crumbs" (slice (dict "label" "Home" "url" "/"))
+  ) }}
+
+  <section class="section">
+    <div class="container">
+      <div class="note-list">
+        {{ range .Pages.ByDate.Reverse }}
+          {{ if eq .Section "notes" }}{{ partial "note-card.html" . }}{{ else }}{{ partial "project-card.html" . }}{{ end }}
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

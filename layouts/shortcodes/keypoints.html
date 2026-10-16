@@ -1,0 +1,5 @@
+{{- /* Usage: {{< keypoints >}} - item one - item two {{< /keypoints >}} */ -}}
+<div class="keypoints">
+  <p class="keypoints__label">{{ .Get "title" | default "At a glance" }}</p>
+  <div class="keypoints__body">{{ .Inner | markdownify }}</div>
+</div>
