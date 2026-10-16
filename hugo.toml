@@ -1,4 +1,6 @@
-baseURL = "http://localhost:1313/"
+# Production URL. GitHub Actions overrides this with the real Pages URL at
+# build time, so this value only affects manual `hugo` builds.
+baseURL = "https://ananth-narayan-iitm.github.io/multiphase.github.io/"
 locale = "en-us"
 title = "Dr. Alex Morgan"
 enableRobotsTXT = true

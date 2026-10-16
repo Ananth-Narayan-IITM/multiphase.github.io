@@ -1,0 +1,3 @@
+# Local development overrides (used by `hugo server`).
+# Keeps the preview at the root of localhost instead of the production sub-path.
+baseURL = "http://localhost:1313/"
